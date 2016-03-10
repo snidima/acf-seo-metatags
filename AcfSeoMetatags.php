@@ -44,7 +44,7 @@ class AcfSeoMetaTags {
 
     private function PregInSrcData ( $param )
     {
-        if (preg_match('/page\/([0-9]{1,})/', $param, $m)) {
+        if (preg_match('/([0-9]{1,})/', $param, $m)) {
             $title       = str_replace('%page%', $m[1], $this->_options['SrcData'][$this->_selectItem]['pagination']);
             $description = str_replace('%page%', $m[1], $this->_options['SrcData'][$this->_selectItem]['pagination_descriptions']);
         }
@@ -102,7 +102,7 @@ class AcfSeoMetaTags {
                     $this->noPregInSrcData();
                     $result = true;
                 }
-            /* todo Сделать проверку на наличие '/' в начале и конце строки*/
+            /* todo Сделать проверку на наличие '/' в начале и конце строки */
             if ( $value['reg'] * 1 === 1 )
                 if ( preg_match( substr_replace($value['path-preg'], '/'.$value['path-preg'], 0).'/', $this->getCurUrl(), $matches ) ){
                     $this->_selectItem = $key;
@@ -136,9 +136,7 @@ class AcfSeoMetaTags {
     {
         $metaTags = $this->_metaTags;
 
-        add_filter( 'wp_title', function() use ( $metaTags ){
-            return $metaTags['title'];
-        },11);
+
 
         add_filter( 'pre_get_document_title', function() use ( $metaTags ){
             return $metaTags['title'];

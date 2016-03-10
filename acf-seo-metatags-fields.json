@@ -19,7 +19,7 @@
                 "collapsed": "field_56c488c261d4d",
                 "min": "",
                 "max": "",
-                "layout": "block",
+                "layout": "row",
                 "button_label": "\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443",
                 "sub_fields": [
                     {
@@ -27,9 +27,46 @@
                         "label": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a",
                         "name": "title",
                         "type": "text",
-                        "instructions": "Title",
+                        "instructions": "",
                         "required": 0,
-                        "conditional_logic": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56c574a0d8b60",
+                                    "operator": "!=",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_56c574c1d8b61",
+                        "label": "\u0414\u0438\u043d\u0430\u043c\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a",
+                        "name": "pagination",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56c574a0d8b60",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
                         "wrapper": {
                             "width": "",
                             "class": "",
@@ -48,9 +85,17 @@
                         "label": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435",
                         "name": "descriptions",
                         "type": "textarea",
-                        "instructions": "Description",
+                        "instructions": "",
                         "required": 0,
-                        "conditional_logic": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56c574a0d8b60",
+                                    "operator": "!=",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
                         "wrapper": {
                             "width": "",
                             "class": "",
@@ -58,7 +103,36 @@
                         },
                         "default_value": "",
                         "placeholder": "",
-                        "maxlength": 4,
+                        "maxlength": "",
+                        "rows": 3,
+                        "new_lines": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_56e119460dabc",
+                        "label": "\u0414\u0438\u043d\u0430\u043c\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435",
+                        "name": "pagination_descriptions",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56c574a0d8b60",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "maxlength": "",
                         "rows": 3,
                         "new_lines": "",
                         "readonly": 0,
@@ -69,7 +143,7 @@
                         "label": "\u041a\u043b\u044e\u0447\u0435\u0432\u044b\u0435 \u0441\u043b\u043e\u0432\u0430",
                         "name": "keywords",
                         "type": "textarea",
-                        "instructions": "Keywords",
+                        "instructions": "",
                         "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
@@ -108,26 +182,34 @@
                         "type": "text",
                         "instructions": "",
                         "required": 0,
-                        "conditional_logic": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56c574a0d8b60",
+                                    "operator": "!=",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
                         "wrapper": {
                             "width": "",
                             "class": "",
                             "id": ""
                         },
                         "default_value": "",
-                        "maxlength": "",
                         "placeholder": "",
-                        "prepend": "",
+                        "prepend": "http:\/\/site",
                         "append": "",
+                        "maxlength": "",
                         "readonly": 0,
                         "disabled": 0
                     },
                     {
-                        "key": "field_56c574c1d8b61",
-                        "label": "pagination",
-                        "name": "pagination",
+                        "key": "field_56e124cc2528a",
+                        "label": "Url \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b",
+                        "name": "path-preg",
                         "type": "text",
-                        "instructions": "\u0415\u0441\u043b\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f \u0440\u0435\u0433\u0443\u043b\u044f\u0440\u043d\u043e\u0435 \u0432\u044b\u0440\u0430\u0436\u0435\u043d\u0438\u0435, \u0442\u043e \u044d\u0442\u043e \u043f\u043e\u043b\u0435 \u0434\u043e\u0431\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043f\u043e\u0441\u043b\u0435 Title.\r\n\u041f\u0440\u0438\u043c\u0435\u0440: - \u0421\u0442\u0440. %page% | Modelform . \u0412\u0441\u0442\u0430\u0432\u0438\u0442 \u0441\u043d\u0430\u0447\u0430\u043b\u0430 \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0439 title, \u043f\u043e\u0442\u043e\u043c \u0421\u0442\u0440. %page% | Modelform, \u0433\u0434\u0435 %page% - \u043d\u043e\u043c\u0435\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b.",
+                        "instructions": "",
                         "required": 0,
                         "conditional_logic": [
                             [
@@ -145,9 +227,199 @@
                         },
                         "default_value": "",
                         "placeholder": "",
-                        "prepend": "",
-                        "append": "",
+                        "prepend": "http:\/\/site\/",
+                        "append": "\/",
                         "maxlength": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_56e129892975a",
+                        "label": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u043c\u0435\u0442\u0430\u0442\u0435\u0433\u0438",
+                        "name": "tags_for_social",
+                        "type": "true_false",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_56e129ece5cc3",
+                        "label": "\u0417\u0430\u0433\u043e\u0442\u043e\u0432\u043a\u0438 \u043c\u0435\u0442\u0430\u0442\u0435\u0433\u043e\u0432",
+                        "name": "social",
+                        "type": "select",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56e129892975a",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "openGraph": "openGraph",
+                            "twitter": "twitter",
+                            "schema": "schema",
+                            "other": "other"
+                        },
+                        "default_value": [
+                            
+                        ],
+                        "allow_null": 0,
+                        "multiple": 1,
+                        "ui": 0,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_56e136276cb6a",
+                        "label": "Open Graph",
+                        "name": "social_tags_openGraph",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56e129892975a",
+                                    "operator": "==",
+                                    "value": "1"
+                                },
+                                {
+                                    "field": "field_56e129ece5cc3",
+                                    "operator": "==",
+                                    "value": "openGraph"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "<meta property=\"og:title\" content=\"\" \/>\r\n<meta property=\"og:type\" content=\"\" \/>\r\n<meta property=\"og:url\" content=\"\" \/>\r\n<meta property=\"og:image\" content=\"\" \/>\r\n<meta property=\"og:site_name\" content=\"\" \/>\r\n<meta property=\"og:description\" content=\"\" \/>",
+                        "placeholder": "",
+                        "maxlength": "",
+                        "rows": 6,
+                        "new_lines": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_56e137e29f69c",
+                        "label": "Twitter",
+                        "name": "social_tags_twitter",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56e129892975a",
+                                    "operator": "==",
+                                    "value": "1"
+                                },
+                                {
+                                    "field": "field_56e129ece5cc3",
+                                    "operator": "==",
+                                    "value": "twitter"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "<meta name=\"twitter:card\" content=\"\" \/>\r\n<meta name=\"twitter:title\" content=\"\" \/>\r\n<meta name=\"twitter:description\" content=\"\" \/>\r\n<meta name=\"twitter:image\" content=\"\" \/>",
+                        "placeholder": "",
+                        "maxlength": "",
+                        "rows": 6,
+                        "new_lines": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_56e1380f9f69d",
+                        "label": "Schema.org",
+                        "name": "social_tags_schema",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56e129892975a",
+                                    "operator": "==",
+                                    "value": "1"
+                                },
+                                {
+                                    "field": "field_56e129ece5cc3",
+                                    "operator": "==",
+                                    "value": "schema"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "<meta itemprop=\"name\" content=\"\">\r\n<meta itemprop=\"url\" content=\"\">\r\n<meta itemprop=\"description\" content=\"\">\r\n<meta itemprop=\"image\" content=\"\" \/>",
+                        "placeholder": "",
+                        "maxlength": "",
+                        "rows": 6,
+                        "new_lines": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_56e138419f69e",
+                        "label": "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u043c\u0435\u0442\u0430\u0442\u0435\u0433\u0438",
+                        "name": "social_tags_other",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_56e129892975a",
+                                    "operator": "==",
+                                    "value": "1"
+                                },
+                                {
+                                    "field": "field_56e129ece5cc3",
+                                    "operator": "==",
+                                    "value": "other"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "maxlength": "",
+                        "rows": 6,
+                        "new_lines": "",
                         "readonly": 0,
                         "disabled": 0
                     }
