@@ -106,7 +106,7 @@ class AcfSeoMetaTags {
             if ( $value['reg'] * 1 === 1 )
                 if ( preg_match( substr_replace($value['path-preg'], '/'.$value['path-preg'], 0).'/', $this->getCurUrl(), $matches ) ){
                     $this->_selectItem = $key;
-                    $this->PregInSrcData( $matches[0] );
+                    $this->PregInSrcData( $matches[1] );
                     $result = true;
                 }
         }
