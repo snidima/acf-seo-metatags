@@ -13,6 +13,10 @@ class AcfSeoMetaTags {
 
     private $_selectItem;
 
+    static private $_MetaOn = false;
+
+    static private $_SocialOn = false;
+
 
     private function setOptions()
     {
@@ -31,7 +35,7 @@ class AcfSeoMetaTags {
 
     private function getCurUrl()
     {
-        return $_SERVER['REQUEST_URI'];
+        return $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
     }
 
     private function noPregInSrcData()
@@ -44,15 +48,10 @@ class AcfSeoMetaTags {
 
     private function PregInSrcData ( $param )
     {
-        if (preg_match('/([0-9]{1,})/', $param, $m)) {
-            $title       = str_replace('%page%', $m[1], $this->_options['SrcData'][$this->_selectItem]['pagination']);
-            $description = str_replace('%page%', $m[1], $this->_options['SrcData'][$this->_selectItem]['pagination_descriptions']);
-        }
-        else{
-            $title = '';
-            $description = '';
-        }
 
+      $title       = str_replace('%page%', $param, $this->_options['SrcData'][$this->_selectItem]['pagination']);
+      $description = str_replace('%page%', $param, $this->_options['SrcData'][$this->_selectItem]['pagination_descriptions']);
+        
         $this->setMetaTags( array(
             'title'       => $title,
             'description' => $description
@@ -74,15 +73,24 @@ class AcfSeoMetaTags {
 
     private function selectInsertTagsMethod()
     {
+        self::$_MetaOn = $this->_metaTags['description'];
 
         if ( class_exists( $this->_options['seoPluginClassName'] ) )
             $this->saveMetaTagsWithSeoPlugin();
         else
             $this->saveMetaTagsWithoutSeoPlugin();
 
-        if ( $this->_options['SrcData'][$this->_selectItem]['tags_for_social'] * 1 === 1 )
+        if ( $this->_options['SrcData'][$this->_selectItem]['tags_for_social'] * 1 === 1 ){
+            self::$_SocialOn = true;
             $this->saveSocialMetaTags();
+          }
+    }
 
+    static public function getMetaDescription() {
+      return self::$_MetaOn;
+    }
+    static public function getMetaMicroTegs() {
+      return self::$_SocialOn;
     }
 
 
@@ -96,23 +104,29 @@ class AcfSeoMetaTags {
         $result = false;
 
         foreach ( $this->_options['SrcData'] as $key => $value ) {
+
+            //Если строка не регулярное выражение
             if ( $value['reg'] * 1 !== 1 )
-                if ( $value['path'] === $this->getCurUrl() ) {
+                if ( $_SERVER["SERVER_NAME"].'/'.$value['path'] === $this->getCurUrl() ) {
                     $this->_selectItem = $key;
                     $this->noPregInSrcData();
                     $result = true;
                 }
-            /* todo Сделать проверку на наличие '/' в начале и конце строки */
-            if ( $value['reg'] * 1 === 1 )
-                if ( preg_match( substr_replace($value['path-preg'], '/'.$value['path-preg'], 0).'/', $this->getCurUrl(), $matches ) ){
+
+            //Если строка регулярное выражение
+            if ( $value['reg'] * 1 === 1 ){
+
+                $str = $_SERVER["SERVER_NAME"].'\/'.$value['path-preg'];
+
+                if ( preg_match( "/$str/i", $this->getCurUrl(), $matches ) ){
                     $this->_selectItem = $key;
                     $this->PregInSrcData( $matches[1] );
                     $result = true;
                 }
+            }
         }
 
-        if ( !$result )
-            $this->noInSrcData();
+        if ( !$result ) $this->noInSrcData();
     }
 
     private function saveMetaTagsWithSeoPlugin()
@@ -135,8 +149,6 @@ class AcfSeoMetaTags {
     private function saveMetaTagsWithoutSeoPlugin()
     {
         $metaTags = $this->_metaTags;
-
-
 
         add_filter( 'pre_get_document_title', function() use ( $metaTags ){
             return $metaTags['title'];
@@ -174,7 +186,6 @@ class AcfSeoMetaTags {
         }
 
         $this->_debug = $param['debug'];
-
         $this->start();
     }
 
@@ -198,6 +209,17 @@ class AcfSeoMetaTags {
                 });
 
         }
+    }
+
+    private function console_log( $title, $message ){
+      if ( !$this->_debug ) return;
+      add_action( 'wp_footer', function() use ( $title, $message ) {
+        echo "<script>";
+        echo "console.group('ACF-SEO-Metatags:');";
+        echo "console.warn('$title: $message');";
+        echo "console.groupEnd();";
+        echo "</script>";
+      });
     }
 
 }
